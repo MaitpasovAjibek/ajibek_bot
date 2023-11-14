@@ -1,6 +1,6 @@
-
-from aiogram import types
-from config import bot
+import sqlite3
+from aiogram import types,Dispatcher
+from config import bot,DESTINATION
 from database.sql_commands import Database
 from keyboards.inline_buttons import start_keyboard
 
@@ -15,9 +15,17 @@ async def start_button(message: types.Message):
         first_name=message.from_user.first_name,
         last_name=message.from_user.last_name,
     )
-    await bot.send_message(
-        chat_id=message.from_user.id,
-        text=f"Hello {message.from_user.first_name}",
-        reply_markup=await start_keyboard()
-    )
-
+    # await bot.send_message(
+    #     chat_id=message.from_user.id,
+    #     text=f"Hello {message.from_user.first_name}",
+    #     reply_markup=await start_keyboard()
+    # )
+    with open(DESTINATION+'madara_ani.gif','rb') as animation:
+        await bot.send_animation(
+            chat_id=message.from_user.id,
+            animation=animation,
+            caption=f"Hello {message.from_user.first_name}",
+            reply_markup=await start_keyboard()
+        )
+def register_start_handlers(dp:Dispatcher):
+    dp.register_message_handler(start_button,commands=['start'])
