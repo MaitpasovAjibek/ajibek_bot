@@ -148,7 +148,7 @@ async def load_photo(message: types.Message,
             )
         await bot.send_message(
             chat_id=message.from_user.id,
-            text="Registered successfully 🍾🎉"
+            text="Registered successfully "
         )
         await state.finish()
 

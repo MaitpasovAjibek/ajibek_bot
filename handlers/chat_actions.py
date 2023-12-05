@@ -1,8 +1,8 @@
 from aiogram import types,Dispatcher
 from config import bot,DESTINATION
 from database.sql_commands import Database
-from keyboards.inline_buttons import start_keyboard
-from profanity_check import predict_prob,predict
+
+from profanity_check import predict_prob
 import datetime
 
 async def chat_messages(message: types.Message):
@@ -20,7 +20,7 @@ async def chat_messages(message: types.Message):
                 chat_id=message.chat.id,
                 text=f"User: {message.from_user.id} {message.from_user.first_name}\n"
                      f"Dont curse in this chat\n"
-                     f"In third time u will be banned"
+                     f"In third time you will be banned"
             )
             print(user)
             count = None

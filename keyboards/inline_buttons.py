@@ -4,13 +4,28 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 async def start_keyboard():
     markup = InlineKeyboardMarkup()
     questionnaire_button = InlineKeyboardButton(
-        "Start Questionnaire 🔥",
+        "Start Questionnaire ",
         callback_data="start_questionnaire"
     )
     registration_button = InlineKeyboardButton(
-        "Registration 😎",
+        "Registration ",
         callback_data="registration"
     )
+
+    my_profile = InlineKeyboardButton(
+        'My profile',
+        callback_data='My profile'
+    )
+    random_profiles_button = InlineKeyboardButton(
+        'View profile',
+        callback_data='Random profiles'
+    )
+    reference_menu = InlineKeyboardMarkup(
+        'reference menu',callback_data = 'reference menu'
+    )
+    markup.add(reference_menu)
+    markup.add(random_profiles_button)
+    markup.add(my_profile)
     markup.add(questionnaire_button)
     markup.add(registration_button)
     return markup
@@ -21,13 +36,57 @@ async def questionnaire_keyboard():
 
     python_button = InlineKeyboardButton(
 
-        "Python 🐍",
+        "Python ",
         callback_data="python"
     )
     mojo_button = InlineKeyboardButton(
-        "Mojo 🔥",
+        "Mojo ",
         callback_data="mojo"
     )
     markup.add(python_button)
     markup.add(mojo_button)
+    return markup
+
+async def my_profile_keyboard():
+    markup=InlineKeyboardMarkup
+    update_button = InlineKeyboardButton(
+        'Update',
+        callback_data='update_profile'
+    )
+
+    delete_button = InlineKeyboardButton(
+        'Delete',
+        callback_data='Delete my profile'
+
+    )
+    markup.add(delete_button)
+    markup.add(update_button)
+    return markup
+
+
+
+async def like_dislike_keyboard(owner_tg_id):
+    markup=InlineKeyboardMarkup
+    like_button = InlineKeyboardButton(
+        'Like',
+        callback_data=f'liked_profile{owner_tg_id}'
+    )
+
+    dislike_button = InlineKeyboardButton(
+        'Dislike',
+        callback_data='random_profiles'
+
+    )
+    markup.add(dislike_button)
+    markup.add(like_button)
+    return markup
+
+
+async def reference_menu_keyboard():
+    markup = InlineKeyboardMarkup()
+    reference_button = InlineKeyboardButton(
+        "Reference Link 🔗",
+        callback_data="reference_link"
+    )
+    markup.add(reference_button)
     return markup
