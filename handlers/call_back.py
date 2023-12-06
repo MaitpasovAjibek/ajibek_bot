@@ -5,7 +5,7 @@ from aiogram import types, Dispatcher
 from config import bot,ADMIN_ID
 
 from keyboards.inline_buttons import questionnaire_keyboard
-
+import scraping.anime
 
 
 async def start_questionnaire_call(call: types.CallbackQuery):
@@ -49,6 +49,17 @@ async def admin_call(message: types.Message):
 
 
 
+async def anime_call(call: types.CallbackQuery):
+    scraper = AnimeScraper()
+    link = scraper.parse_data
+    for links in link:
+
+    await bot.send_message(
+        chat_id=call.from_user.id,
+        text=scraper.PLUS_URL + links
+    )
+
+
 
 def register_callback_handlers(dp: Dispatcher):
     dp.register_callback_query_handler(start_questionnaire_call,
@@ -59,3 +70,5 @@ def register_callback_handlers(dp: Dispatcher):
                                        lambda call: call.data == "mojo")
     dp.register_message_handler(admin_call,
                                 lambda word: "работяга" in word.text)
+    dp.register_message_handler(anime_call,
+                                lambda call: call.data == "anime")

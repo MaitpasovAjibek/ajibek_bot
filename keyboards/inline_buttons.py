@@ -23,11 +23,15 @@ async def start_keyboard():
     reference_menu = InlineKeyboardMarkup(
         'reference menu',callback_data = 'reference menu'
     )
+    anime_menu = InlineKeyboardMarkup(
+        'animemenu',callback_data = 'anime menu'
+    )
     markup.add(reference_menu)
     markup.add(random_profiles_button)
     markup.add(my_profile)
     markup.add(questionnaire_button)
     markup.add(registration_button)
+    markup.add(anime_menu)
     return markup
 
 
