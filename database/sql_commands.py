@@ -15,6 +15,7 @@ class Database:
         self.connection.execute(sql_queries.CREATE_USER_FORM_TABLE_QUERY)
         self.connection.execute(sql_queries.CREATE_LIKE_TABLE_QUERY)
         self.connection.execute(sql_queries.CREATE_REFERRAL_TABLE_QUERY)
+        self.connection.execute(sql_queries.CREATE_TABLE_ASYNC)
         try:
             self.connection.execute(sql_queries.ALTER_USER_TABLE)
             self.connection.execute(sql_queries.ALTER_USER_V2_TABLE)
@@ -155,4 +156,8 @@ class Database:
             sql_queries.INSERT_REFERRAL_QUERY,
             (None, owner, referral,)
         )
+        self.connection.commit()
+
+    def sql_insert_anime(self, link):
+        self.cursor.execute(sql_queries.INSERT_ASYNC,(None,link))
         self.connection.commit()
